@@ -50,21 +50,34 @@ function addGif(){
 			for(var i = 0; i < response.data.length; i++){
 				//for each item in array create a new img tag
 				var img = $("<img>");
-				//add the src from giphy api to each img tag
+				//data attr for still img
+				img.attr("data-still", response.data[i].images.original_still.url);
+				//data attr for gif
+				img.attr("data-gif", response.data[i].images.original.url);
+				//add the still src from giphy api to each img tag
 				img.attr("src", response.data[i].images.original_still.url).addClass('image');
 				//append img to document
 				$(".images").append(img);
-				console.log(response.data[i].images.original_still);
 			}
-	
 		});
-	
 }
+
 //event handlers
 $(document).ready(function() {
-	//when any button is pressed
+	//when any button is pressed trigger add gif function
 	$(document).on('click', '.button', addGif);
-	
+	//when img is pressed, turn img from static into gif
+	$(document).on('click', '.image', function(event){
+		//if img clicked is still
+		if(this.src === $(this).attr("data-still")){
+			//turn into a gif
+			this.src = $(this).attr('data-gif');
+		} else {
+			//else turn into still 
+			this.src = $(this).attr("data-still");
+		}
+	});
+
 });
 //function calls
 generateButtons();
