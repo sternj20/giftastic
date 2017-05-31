@@ -14,7 +14,7 @@ Add a form to your page takes the value from a user input box and adds it into y
 	form pushes to our array the value
 	triggers a function that iterates through our array and adds buttons for each array
 
-*/
+	*/
 
 // dom variables
 
@@ -42,22 +42,34 @@ function addGif(){
 	images.empty();
 	var name = $(this).attr("data-name");
 	var queryURL = 'http://api.giphy.com/v1/gifs/search?q=' + name + '&api_key=dc6zaTOxFJmzC&limit=10';
-		$.ajax({
-			url: queryURL,
-			method: "GET"
-		}).done(function(response) {
+	$.ajax({
+		url: queryURL,
+		method: "GET"
+	}).done(function(response) {
 			//iterate through responses array
 			for(var i = 0; i < response.data.length; i++){
-				//for each item in array create a new img tag
+				//for each item in array create a new div
+				var div = $("<div>");
+				div.addClass('imgDiv');
+				//create a new image
 				var img = $("<img>");
 				//data attr for still img
 				img.attr("data-still", response.data[i].images.original_still.url);
+				//data attr for rating
+				img.attr("data-rating", response.data[i].rating);
 				//data attr for gif
 				img.attr("data-gif", response.data[i].images.original.url);
 				//add the still src from giphy api to each img tag
 				img.attr("src", response.data[i].images.original_still.url).addClass('image');
-				//append img to document
-				$(".images").append(img);
+				//create rating for images
+				var rating = $("<div>");
+				rating.html("<b>Rating: </b>" + img.attr("data-rating")).addClass('rating');
+				//append img to div
+				div.append(img);
+				//append rating to div
+				div.append(rating);
+				//append div to document
+				$(".images").append(div);
 			}
 		});
 }
