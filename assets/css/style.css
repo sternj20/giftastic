@@ -16,3 +16,14 @@
 	left:17px;
 }
 
+.button{
+	padding:20px;
+	margin:10px;
+	background:blue;
+	color:white;
+	border-radius: 28px;
+}
+
+.button:hover{
+	background:silver;
+}
