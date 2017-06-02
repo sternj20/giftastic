@@ -3,7 +3,7 @@
 var buttons = $(".buttons");
 var images = $(".images");
 // array of strings that are topics for giphy images to be generated
-var topics = ['house of cards', 'black mirror', 'silicon valley', 'tabla', 'martin'];
+var topics = ['house of cards', 'black mirror', 'silicon valley', 'bollywood', 'drake', 'saiyan', 'martin', 'developer', 'san francisco', 'guitar', 'jimi hendrix', 'trump', 'hillary', 'ancient aliens', 'kanye', 'workaholics', 'jesus', 'cat lady'];
 
 //iterates through our array and adds buttons for each array
 function generateButtons(){
